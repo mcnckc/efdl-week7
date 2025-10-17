@@ -22,7 +22,6 @@ print("Loaded model")
 @app.route("/predict", methods=['POST'])
 @metrics.counter("app_http_inference_count", "number of http requests")
 def predict():
-
     data = request.get_json(force=True)
     img = Image.open(requests.get(data["url"], stream=True).raw)
     batch = [preprocess(img)]
